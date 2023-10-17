@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 from FewShot_models.manipulate import *
 from kornia.color import *
-import kornia.augmentation.functional as F_k
+import kornia.augmentation as F_k
 import kornia as K
 from kornia.geometry.transform.imgwarp import (
     warp_affine, get_rotation_matrix2d, get_affine_matrix2d

@@ -1,6 +1,15 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,jupyternotebooks
 
+### Auto Downloaded dataset folders ###
+cifar_data/
+mnist_data/
+fashionmnist_data/
+
+### Generated files ###
+
+
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/

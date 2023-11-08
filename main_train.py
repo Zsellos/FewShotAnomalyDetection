@@ -1,7 +1,19 @@
+import os
+import sys
+import numpy as np
+from pathlib import Path
+import torch.utils.data
+    
+# Changing directory path to be able to call the files from anywhere
+path = __file__
+f = os.path.basename(__file__)
+path = path[:len(path)-len(f)]
+# print(path)
+sys.path.append(path)        
+
 from FewShot_models.training_parallel import *
 import FewShot_models.functions as functions
-import numpy as np
-import torch.utils.data
+
 from Dataloaders.cifar_loader import download_class_cifar
 from Dataloaders.mnist_loader import download_class_mnist
 from Dataloaders.fashionmnist_loader import download_class_FashionMnist
@@ -9,6 +21,8 @@ from Dataloaders.paris_loader import download_class_paris
 from Dataloaders.mvtec_loader import download_class_mvtec
 from anomaly_detection_evaluation import anomaly_detection
 from defect_detection_evaluation import defect_detection
+
+
 
 if __name__ == '__main__':
     parser = get_arguments()
@@ -41,10 +55,19 @@ if __name__ == '__main__':
     opt.num_transforms=opt.num_transforms
     dataset = opt.dataset
 
+
+
+    input_dir_path = Path(opt.input_dir)
+
+    if not input_dir_path.exists():
+        os.makedirs(opt.input_dir)
+        
+
     if opt.if_download == True:
         if dataset == 'cifar':
             opt.num_transforms, opt.niter = 54, opt.niter_rgb
             opt.input_name = download_class_cifar(opt)
+            
         elif dataset == 'mnist':
             opt.num_transforms, opt.niter = 42, opt.niter_gray
             opt.input_name = download_class_mnist(opt)
